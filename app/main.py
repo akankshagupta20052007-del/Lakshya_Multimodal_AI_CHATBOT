@@ -60,6 +60,11 @@ app.include_router(media_router, prefix="/api")
 app.mount("/static/images", StaticFiles(directory=str(settings.resolved_images_dir)), name="images")
 app.mount("/static/audio", StaticFiles(directory=str(settings.resolved_audio_dir)), name="audio")
 
+# Mount Static Documentation (Project Reports, Architecture Specs)
+docs_dir = settings.BASE_DIR / "data" / "generated" / "docs"
+docs_dir.mkdir(parents=True, exist_ok=True)
+app.mount("/static/docs", StaticFiles(directory=str(docs_dir)), name="docs")
+
 
 @app.get("/", tags=["Root"])
 def root():

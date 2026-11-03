@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Optional, List, Dict, Any
 
 # Root base directory
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent
 
 # Page Configuration
 st.set_page_config(
@@ -522,6 +522,23 @@ with st.sidebar:
                 st.rerun()
     else:
         st.caption("No documents in Knowledge Base. Attach files via [ ＋ Studio Tools ▾ ].")
+
+    st.markdown("---")
+    st.markdown("#### 🎓 Project Documentation")
+    report_path = BASE_DIR / "data" / "generated" / "docs" / "Lakshya_Project_Report.pdf"
+    if not report_path.exists():
+        report_path = BASE_DIR / "Lakshya_Project_Report.pdf"
+    if report_path.exists():
+        with open(report_path, "rb") as rf:
+            report_bytes = rf.read()
+        st.download_button(
+            label="📥 Download Project Report (PDF)",
+            data=report_bytes,
+            file_name="Lakshya_Project_Report.pdf",
+            mime="application/pdf",
+            use_container_width=True,
+            help="Download complete 6-page academic project report by Akanksha Gupta"
+        )
 
 
 # --- HERO SCREEN (Shown when conversation is empty) ---

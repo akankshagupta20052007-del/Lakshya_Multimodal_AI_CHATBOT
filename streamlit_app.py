@@ -523,6 +523,23 @@ with st.sidebar:
     else:
         st.caption("No documents in Knowledge Base. Attach files via [ ＋ Studio Tools ▾ ].")
 
+    st.markdown("---")
+    st.markdown("#### 🎓 Project Documentation")
+    report_path = BASE_DIR / "data" / "generated" / "docs" / "Lakshya_Project_Report.pdf"
+    if not report_path.exists():
+        report_path = BASE_DIR / "Lakshya_Project_Report.pdf"
+    if report_path.exists():
+        with open(report_path, "rb") as rf:
+            report_bytes = rf.read()
+        st.download_button(
+            label="📥 Download Project Report (PDF)",
+            data=report_bytes,
+            file_name="Lakshya_Project_Report.pdf",
+            mime="application/pdf",
+            use_container_width=True,
+            help="Download complete 6-page academic project report by Akanksha Gupta"
+        )
+
 
 # --- HERO SCREEN (Shown when conversation is empty) ---
 if len(st.session_state.messages) == 0:
