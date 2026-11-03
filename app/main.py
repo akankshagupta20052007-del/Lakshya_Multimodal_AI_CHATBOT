@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from .config import settings
+from .config import settings, BASE_DIR
 from .database import init_db
 from .utils.logging_config import logger
 from .routers import (
@@ -61,7 +61,7 @@ app.mount("/static/images", StaticFiles(directory=str(settings.resolved_images_d
 app.mount("/static/audio", StaticFiles(directory=str(settings.resolved_audio_dir)), name="audio")
 
 # Mount Static Documentation (Project Reports, Architecture Specs)
-docs_dir = settings.BASE_DIR / "data" / "generated" / "docs"
+docs_dir = BASE_DIR / "data" / "generated" / "docs"
 docs_dir.mkdir(parents=True, exist_ok=True)
 app.mount("/static/docs", StaticFiles(directory=str(docs_dir)), name="docs")
 
