@@ -1,0 +1,39 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.pytest_cache/
+
+# Environment Variables & Secrets (CRITICAL: NEVER COMMIT API KEYS)
+.env
+.env.local
+.env.*
+!.env.example
+
+# Database & Generated Local Media
+*.db
+*.sqlite3
+data/*.db
+data/vector_index/
+data/uploads/
+data/generated/audio/*
+!data/generated/audio/.gitkeep
+data/generated/images/*
+!data/generated/images/.gitkeep
+
+# IDE & OS Specific
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs & Temp
+*.log
+logs/
+temp/
